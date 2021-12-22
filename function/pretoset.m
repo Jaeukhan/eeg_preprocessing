@@ -50,7 +50,7 @@ for i=1:N
     mkdir(['setfile/', foldname]);
     pop_artmwppth();
     if save
-        eegsave(EEG, name,['C:\Users\user\Desktop\¿¬±¸\matlab\eeg_preprocessing\setfile\', foldname])
+        eegsave(EEG, name,['C:\Users\cgna\Documents\GitHub\eeg_preprocessing\setfile\', foldname])
     end
 end
 

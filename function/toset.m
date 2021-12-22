@@ -26,8 +26,10 @@ for i=1:N
     EEG = eeg_checkset(EEG);
     EEG = pop_resample(EEG, 250)
     EEG = eeg_checkset(EEG);
-    mkdir(['setfile/', foldname]);
-    eegsave(EEG, strcat('ori',name),['C:\Users\user\Desktop\¿¬±¸\matlab\eeg_preprocessing\setfile\', foldname])
+    if ~exist(['setfile/', foldname],'dir')
+        mkdir(['setfile/', foldname]);
+    end
+    eegsave(EEG, strcat('ori',name),['C:\Users\cgna\Documents\GitHub\ju\eeg_preprocessing\setfile\', foldname])
 end
 
 end
