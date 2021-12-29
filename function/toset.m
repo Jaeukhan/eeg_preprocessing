@@ -12,7 +12,7 @@ for i=1:N
     
     data = transpose(df);
     standTime = data(1,:);
-    standData = data(2:7,:); 
+    standData = data(2:6,:);
     
     EEG = pop_importdata('data', standData);
     EEG.times = standTime;
@@ -29,7 +29,7 @@ for i=1:N
     if ~exist(['setfile/', foldname],'dir')
         mkdir(['setfile/', foldname]);
     end
-    eegsave(EEG, strcat('ori',name),['C:\Users\cgna\Documents\GitHub\ju\eeg_preprocessing\setfile\', foldname])
+    eegsave(EEG, strcat('ori',name),['C:\Users\user\Documents\GitHub\eeg_preprocessing\setfile\', foldname])
 end
 
 end

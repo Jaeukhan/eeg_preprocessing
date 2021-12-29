@@ -46,11 +46,12 @@ for i=1:N
         end
     end
     EEG = eeg_checkset(EEG);
-    
-    mkdir(['setfile/', foldname]);
+    if ~exist(['setfile/', foldname],'dir')
+        mkdir(['setfile/', foldname]);
+    end
     pop_artmwppth();
     if save
-        eegsave(EEG, name,['C:\Users\cgna\Documents\GitHub\eeg_preprocessing\setfile\', foldname])
+        eegsave(EEG, strcat('ori',name),['C:\Users\user\Documents\GitHub\eeg_preprocessing\setfile\', foldname])
     end
 end
 

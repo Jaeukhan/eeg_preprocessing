@@ -1,11 +1,15 @@
-directo = 'setfile/';
+foldname = 'nogain';
+directo = ['setfile/',foldname,'/'];
 list = dir(strcat(directo,'*.set'));
 N = size(list,1);
 resampling = 250;
 seconds = 5;
 
 lastname = {'delta', 'theta', 'alpha', 'beta'};
-        
+
+if ~exist(['results/', foldname],'dir')
+    mkdir(['results/', foldname]);
+end
 for i =1:N
     fn =strcat(directo, list(i).name);
     EEG = load('-mat',fn);
@@ -20,7 +24,8 @@ for j = 1:rows %row는 channel
         as = [];
         bs = [];
         [spectra,freqs] = spectopo(EEG.data(j,:), 0, EEG.srate);
-
+        xlim([0,80])
+        saveas(gcf, [num2str(i),'plot', num2str(j),'.png'])
         % delta=1-4, theta=4-8, alpha=8-13, beta=13-30, gamma=30-80
         deltaIdx = find(freqs>1 & freqs<4);
         thetaIdx = find(freqs>4 & freqs<8);
@@ -47,8 +52,9 @@ for j = 1:rows %row는 channel
         T = cell2table(poall,'RowNames', lastname); %VariableNames
 %         writetable(T, 'text.txt', 'WriteRowNames', true);
         s = {EEG.chanlocs.labels};
-        st = strcat('results/' , name ,  s{j} , '.csv');
-        writetable(T, st);
+        st = strcat('results/', foldname,'/' , name ,  s{j} , '.csv');
+        clf;
+%         writetable(T, st);
     end
  
 end
